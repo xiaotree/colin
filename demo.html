@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+</head>
+<script type="text/javascript">
+
+	// var a ="aasdad";
+
+	// alert(a.charAt(0)) ;
+	/*
+	嵌套函数  《-闭包
+	*/
+	// function aa(){
+	// 	var num=0;
+	// 	return function(){ //值会保存 累加
+	// 		num++;
+	// 		alert(num);
+
+	// 	}
+	// }
+	// var fun=aa();
+	// fun();
+	// fun();
+	// fun();
+	// fun();
+ 
+	/* 
+	定义一个数组去空的方法
+	*/
+	// Array.prototype.delfun=function(){ //Array是数组的对象 delfun是在原形上定义的
+
+	// 	if(this instanceof Array==false){ //判断是否是数组 
+	// 		return;
+	// 	}
+	// 	var max=[];
+	// 	for(var i=0; i<this.length; i++){
+	// 		if(this[i]!==""){
+	// 			max.push(this[i]);
+	// 		}
+	// 	}
+	// 	return max;
+	// }
+	// var arr=[1,"","",12,""];
+	// alert(arr.delfun()); //直接方法.属性调用delfun使用
+
+	/*
+	call 传参
+	*/
+		// function aa(a){
+		// 	alert(a);
+		// }
+		// function bb(a){
+		// 	aa.call(this,a);
+		// }
+		// var cc = new bb(15);
+
+	/*
+	apply 传参与call的区别 加上[]
+	*/
+		// function aa(a){
+		// 	alert(a);
+		// }
+		// function bb(a){
+		// 	aa.apply(this,[a]);
+		// }
+		// var cc = new bb(15);
+
+	/*
+	parseInt 强制转数值类型方法 属于Object
+	*/
+	// var aa="10px";//字符串类型 会自动省略px
+	// alert(parseInt(aa,10)); //转字符类型 ->parseInt(aa,16) aa变量名 16表示进制
+	
+	/*
+	toString 强制转字符串类型方法 属于Object
+	*/
+	// var aa=255; //数值类型
+	// alert(typeof aa.toString(10)); //转string类型 ->toString(16) 16表示进制
+
+	//继承的优先级 自己的构造方法 > 自己的原形方法 > 父类的构造方法 >  父类的原形方法
+	// > 顶层的Object方法
+
+	/*
+	检测对象类型 Constructor		
+	*/
+	// var aa = Object();
+	// var bb = [];
+	// var cc = "dd";
+	// alert(aa.constructor);
+	
+	/*
+	对象的继承方法
+	*/
+	// function ren(age,sex){ //第一个对象 父类
+	// 	this.name="张三";
+	// 	this.ae=age;
+	// 	this.sex=sex;
+	// }
+	// ren.prototype={ 
+	// 	say:function(a){
+	// 		alert(a);
+	// 	},
+	// 	wna:function(){
+	// 		alert("玩游戏");
+	// 	}
+	// };
+	// wang = new ren(19,"男");
+	// alert(wang.say("看电影"));
+
+	// function wang(aihao){ //第二个对象 子类
+	// 	this.aihao=aihao;
+	// }
+	// // wang.prototype=new ren (); //子类通过原形new 继承父类的全部
+	// wang.prototype=ren.prototype; //子类通过原形只继承父类的原形
+	// var wangwu = new wang("爱好是看电影");   //创建一个实体王五
+	// alert(wangwu.aihao); //继承后不但可以用父类的还可以加自己的
+	// // alert(wangwu.wna()); //继承父类的全部
+
+	/* 
+	函数 arguments的用法 只能在函数内使用
+	*/
+	// function fun(aa,bb){
+	// 	alert(arguments.length);//检测函数实参的个数
+	// 	alert(arguments[1]);//检测函数实参的值
+	// }
+	// fun(12,34);
+
+	/*
+	对象的封装	
+	*/
+// function newiphone(color,brand,price){ //封装
+// 	function phone(color,brand,price){ //对象
+// 		this.color=color;
+// 		this.brand=brand;
+// 		this.price=price;
+// 	}
+// 	phone.prototype={ //原形方法
+// 		pred:function(){
+// 			alert("我能打游戏");
+// 			return 1;
+// 		},
+// 		lood:function(){
+// 			alert("我能看电影");
+// 		}
+// 	}
+// 	return new phone(color,brand,price);
+// }
+// 	var iphone = newiphone("红色","iphone",6899);
+// 	alert(iphone.color+iphone.brand+iphone.price+iphone.pred());
+	// alert(iphone.lood());
+
+	/*
+	对象的删除和遍历	
+	*/
+	// function ren(){
+	// 	this.name="张三";
+	// 	this.age=21;
+	// }
+	// var zhangsan = new ren();
+	// alert(zhangsan.name);
+	// //zhangsan=null;  //删除对象
+	// //delete zhangsan.name; //删除对象的属性
+	// alert(zhangsan.name);
+	//遍历
+	// for(var i in zhangsan){
+	// 	alert(i); //遍历对象的所有属性
+	// 	alert(zhangsan[i]); //遍历对象的所有属性的值
+	// }
+
+	
+	/*
+	创建对象2 构造函数（类）
+	*/
+	// function gouzao(names,ages,sexs){
+	// 	this.name=names;
+	// 	this.age=ages;
+	// 	this.sex=sexs;
+	// 	this.fun=function(zi){
+	// 		alert(zi);
+			
+	// 	}
+	// }
+	// var aa=new gouzao("纪树才",21,"男");
+	// var bb=new gouzao("小新新",20,"女");
+
+	// alert("我的姓名叫"+aa.name+"今年"+aa.age+"性别是"+aa.sex);
+	// alert("我的姓名叫"+bb.name+"今年"+bb.age+"性别是"+bb.sex);
+
+	/*
+	创建对象 json 大多用来储存
+	*/
+	// var ren={name:"纪树才",age:"21",dun:function (){
+	// 	alert("1")
+	// }};
+	// 	alert(ren.name);//调用
+	// 	ren.dun();//方法调用
+
+	/*
+	数组排除重复的值 定义两个函数 有一样的值就写入一个在新函数中
+	*/
+	// var arr=[1,[1,2,2,3,1,[1,1],5],1,3,2,"a","a","b"];
+
+	// function delfun(arr){
+	// 	if(arr instanceof Array==false){
+	// 		return;
+	// 	}
+	// 	var newarr=[];
+	// 	for(var i=0; i<arr.length; i++){
+	// 		if(arr[i] instanceof Array){
+	// 			newarr.push(delfun(arr[i]));//递归算法
+	// 		}else{
+	// 		if(consrt(newarr,arr[i])){
+	// 			newarr.push(arr[i]);
+	// 		}
+	// 		}
+	// 	}
+	// 	return newarr;
+	// }
+	
+	// function consrt(arr,val){
+	// 	for(var i=0; i<arr.length; i++){
+	// 		if(arr[i]==val){
+	// 			return false;
+	// 		}
+	// 	}
+	// 	return true;
+	// }
+	// alert(delfun(arr));
+
+	/*
+	数组排除重复的值 一一比较如果有一样的值就退出 直到没有时才写入
+	*/
+	// var arr=[1,2,1,3,2,"a","a","b"];
+
+	// function fun(arr){
+	// 	if(arr instanceof Array!==true){
+	// 		return;
+	// 	}
+	// 	var newarr=[];
+	// 	for(var i=0; i<arr.length; i++){
+	// 		var flag=true;
+	// 		for(var j=i+1; j<arr.length; j++){
+	// 			if(arr[i]==arr[j]){
+	// 				flag=false;
+	// 				break;
+	// 			}
+
+	// 		}
+	// 		if(flag){
+	// 			newarr.push(arr[i]);
+	// 		}
+	// 	}
+	// 	return newarr;
+	// }
+	// alert(fun(arr)); 
+
+	/*
+	计算二维数组最大长度
+	*/
+	// 	var arr=[[1,2,3,4],[1,2,3,4],[1,2,3,4,5],[1,2,3,4]];
+	// 	function fun(arr){
+	// 		var temp=0;
+	// 		for(var i=0; i<arr.length; i++){
+	// 			if(arr[i].length>temp){
+	// 				temp=arr[i].length;
+	// 			}
+	// 		}
+	// 		return temp;
+	// 	}	
+	// 	fun(arr);
+
+	// 1111
+	// 2222
+	// 3333
+	// 4444
+	//   5
+	// 	function fun1(arr){	
+	// 		for(var i=0; i<fun(arr); i++){
+	// 			for(j=0; j<arr.length; j++){
+	// 				if(arr[j][i]==undefined){
+	// 					document.write("&nbsp;");
+	// 				}else{
+	// 					document.write(arr[j][i]);
+	// 				}
+	// 			}
+	// 			document.write("</br>");
+	// 		}	
+	// 	}
+	// 	fun1(arr);
+	// 
+	
+	/*
+	等腰三角形（金字塔）
+	*/
+	// for(var i=1; i<=9; i++){
+	// 	for(var j=1; j<=9-i; j++){
+	// 		document.write("&nbsp;");
+	// 	}
+	// 	for(var z=1; z<i*2; z++){
+	// 		document.write("*");
+	// 	}
+	// 	document.write("</br>");
+	// }
+	
+	/*
+	数组
+	*/
+	// var arr=[[12,3],[1,"aa",34],["vv",function fun(){}]];
+
+	// for(var i=0; i<arr.length; i++){
+	// 	for(var j=0; j<arr[i].length;j++){
+	// 		document.writeln(arr[i][j]+"&nbsp");
+	// 	}
+	// 	document.write("</br>");
+	// }
+	
+	/*
+	数组去空
+	*/
+	// var zi=['',231,"",'',676787,""];
+	// function maxvalue (arr){
+	// 	if(typeof arr!=="object"){
+	// 		alert("不是数组");
+	// 	}
+	// 	var max=[];
+	// 	for(var i=0; i<arr.length; i++){
+	// 		if(arr[i]!==""){
+	// 			max.push(arr[i]);
+	// 		}
+	// 	}
+	// 	return max;
+	// }
+	// alert(maxvalue(zi));
+	
+	/*
+	数组排序 sort();
+	*/ 
+	// var zi=[2,1,20,5,4];
+	// alert(zi.sort(function(a,b){
+	// 	//return a-b; //小到大
+	// 	return b-a; //大到小
+	// }));
+
+
+	// var i=0;
+	// var num=0;
+	// 
+	// while(i<arr.length){
+	// 	num+=arr[i];
+	// 	i++;
+	// }
+	// alert(num/arr.length);
+	// 
+	// for(var i=0; i<arr.length; i++){
+	// 	alert(arr[i]);
+	// }
+	// alert(num/arr.length);
+	
+	/*
+	三元表达式
+	*/ 
+	// function fun(a){
+	// 	alert(a==2?"等于":"不等于");
+	// }
+	// fun(4);
+	
+	/*
+	内置顶层函数
+	*/ 
+	// var aa =1;
+	// alert(Boolean("a"));
+
+
+	/*
+	递归函数 --自己调自己
+	*/
+	// function fun(num){
+
+	// 	if(num<7){
+	// 		fun(++num);
+	// 	}
+	// 	alert(num);
+
+	// }
+	// fun(6);
+
+
+	/*
+	回调函数
+	*/
+	// function aa(num,callbr){
+	// 	for(var i=0; i<=num; i++){
+	// 		callbr(i);
+	// 	}
+
+	// }
+	// aa(8,function (ins){
+
+	// 	alert(ins);
+	// })
+	
+
+	// var num=1;
+	// function fun(){
+
+	// 	 var num=2;
+	// 	 function fun1(){
+
+	// 	 	var num=3;
+	// 		 function fun2(){
+
+	// 			 var num=4;
+	// 			 alert(num);
+	// 		}
+	// 		fun2();
+	// 	}
+	// 	fun1();
+	// }
+	// fun();
+	
+	// for(var i=1; i<=15; i++){
+
+	// 	if(i==4){
+	// 		break;
+	// 	}
+	// 	document.write(i+"</br>");
+	// }
+
+	// var num=5;
+	// while(num>1){
+	// 	num--;
+	// 	alert(num);
+	// }
+	// do{
+	// 	num--;
+	// 	alert(num);
+	// }while(num>1);
+
+// var i=0;
+// document.write("<table border='1'>");
+// 	while(i<10){
+// 		i++;
+// 		document.write("<tr>");
+// 			var j=0;
+// 			while(j<10){
+// 				j++;
+// 				document.write("<td>"+j+"</td>");
+// 			}
+// 		document.write("</tr>");
+// 	}
+// document.write("</table>");
+	
+	// function fun(){
+	// 	alert("1");
+	// }
+	// fun();
+
+	// var fun=function(){
+	// 	alert("1");
+	// }
+	// fun();
+
+	// var fun= new function(){
+	// 	alert("1");
+	// }
+	// fun();
+
+	// function fun(num1,num2){
+
+	// 	var bg;
+	// 	document.write("<table border='1' width='500' align='center'> ");
+	// 	for (var i=0; i<num1; i++) {
+	// 		if(i%2==0){
+	// 			bg="#F00";
+	// 		}else{
+	// 			bg="#ccc";
+	// 		}
+	// 		document.writeln("<tr bgcolor="+bg+">");
+	// 		for(var j=0; j<num2; j++){
+	// 			document.writeln("<td>"+j+"</td>");
+	// 		}
+	// 		document.writeln("</tr>");
+	// 	}
+	// 	document.write("</table>");
+	// }
+
+	// fun(5,2);
+	// fun(10,20);
+
+// function fun(a,b,c){
+
+// 	for(var i=0; i<arguments.length; i++){
+// 		alert(arguments[i]);
+// 	}
+
+// }
+// fun("你好","我是","纪","小树");
+
+
+	
+	// for( var i=1; i<=5; i++){
+	// 	for(var j=1; j<=6-i; j++){
+	// 		document.write("★");
+	// 	}
+		
+	// 	document.write("</br>");
+	// }
+
+
+
+	// for(var i=1; i<10; i++){
+	// 	for( var j=1; j<=i; j++){
+	// 		document.writeln(j+"*"+i+"="+j*i);
+	// 	}
+	// 	document.writeln("</br>");
+	// }
+	// 
+	// var num=6;
+	// switch(num){
+	// 	case num=1:
+	// 	alert("我等于1");
+	// 	break;
+	// 	case num=2:
+	// 	alert("我等于2");
+	// 	break;
+	// 	default:
+	// 	alert("哈喽");
+	// }
+	// 
+	// var num1=prompt("请输入第一个要运算的数",0);
+	//     num1=parseInt(num1);
+	// var ysf=prompt("请输入运算符","+");
+	// var num2=prompt("请输入第二个要运算的数",0);
+	// 	num2=parseInt(num2);
+
+	// switch(ysf){
+	// 	case "+":
+	// 	alert(num1+num2);
+	// 	break;
+
+	// 	case "-":
+	// 	alert(num1-num2);
+	// 	break;
+
+	// 	case "*":
+	// 	alert(num1*num2);
+	// 	break;
+
+	// 	case "/":
+	// 	alert(num1/num2);
+	// 	break;
+
+	// 	case "%":
+	// 	alert(num1%num2);
+	// 	break;
+
+	// 	default:
+	// 	alert("你输入有误！");
+	// }
+
+// 打字游戏
+	// document.onkeydown=function(a){ //onkeydown键盘按下时触发
+	// 	var ea = a||window.event;  // ||window.event 键盘或鼠标按下的位置记录 返回uncode编码
+	// 	var str = String.fromCharCode(ea.keyCode); //String.fromCharCode 转换编码成字符串
+
+	// 	//document.getElementsByTagName 获取name是span的标签
+	// 	var spans = document.getElementsByTagName("span"); 
+	// 	for(var i=0; i<spans.length;i++){   //遍历span标签的值
+	// 		if(spans[i].innerHTML==str){   //比较按下的键和span标签的值是否一样
+	// 			document.body.removeChild(spans[i]);  //body.removeChild一样时删除
+	// 		}
+	// 	}
+
+	// }
+	
+	
+	//sin 做的y轴旋转动画 
+	// window.onload=function(){
+	// 	var divs=document.getElementsByTagName('div')[0];
+	// 	var startx=500;
+	// 	var startw=50;
+	// 	var statrh=50;
+	// 	var num=0;
+	// 	setInterval(function(){
+	// 		num+=8;
+	// 		divs.style.left=startx+300*Math.sin(num*2*Math.PI/360)+"px";
+	// 		divs.style.width=startw+20*Math.cos(num*2*Math.PI/360)+"px";
+	// 		divs.style.height=statrh+20*Math.cos(num*2*Math.PI/360)+"px";
+	// 		if(Math.cos(num*2*Math.PI/360)<=0.3){
+	// 			Math.cos(num*2*Math.PI/360)=0.3;
+	// 		}else{
+	// 		divs.style.opacity=Math.cos(num*2*Math.PI/360);
+	// 		}
+	// 	},100);
+	// }
+	// 圆的公式：x`=x*cos(A)-y*sin(A), y`=x*sin(A)+y*cos(A);
+	
+	// div 作圆运动动画 
+	// window.onload=function(){
+	// 	var divs=document.getElementsByTagName('div')[0];
+	// 	var oldx=100;
+	// 	var oldy=100;
+	// 	var num=0.1;
+	// 	setInterval(function(){
+	// 		var newx=oldx*Math.cos(num)-oldy*Math.sin(num);
+	// 		var newy=oldx*Math.sin(num)+oldy*Math.cos(num);
+	// 		oldy=newy;
+	// 		oldx=newx;
+	// 		var div=document.createElement("div");
+	// 		div.style.cssText="width:2px;height:2px;background:red;position:absolute;left:"+(500+newx)+"px;top:"+(200+newy)+"px";
+	// 		document.body.appendChild(div);
+	// 		divs.style.left=500+newx+"px";
+	// 		divs.style.top=200+newy+"px";
+	// 	},100);
+	// }
+	
+
+// 	function aa(){
+// 	var widths=document.documentElement.clientWidth; //动态判断浏览器的宽
+// 	var heights=document.documentElement.clientHeight; //动态判断浏览器的高
+// 	if(widths<=700 && heights<=150){
+// 		alert("你的浏览器当前宽高是："+widths+"*"+heights);
+// 	}
+// }
+// aa();
+// 
+
+//定时器
+
+	//var t =setInterval(aa,1000); //setInterval 定时器
+	// var num=0;
+	// function  aa(){
+	// 	num++;
+	// 	if(num==5){
+	// 		clearInterval(t);	//clearInterval 清除定时器
+	// 	}
+	// 	alert(num);
+	// }
+	
+	//setInterval定时器 鼠标双击滚动条滑动停止案例 ondblclick 单击事件
+	// var fgi=0;
+	// var t;
+	// document.ondblclick=function(){
+	// 	if(fgi==0){
+	// 		t=setInterval(fun,100);	
+	// 		function fun(){
+	// 			scrollBy(0,20);
+	// 			fgi=1;
+	// 		}
+	// 	}
+	// 	if(fgi==1){
+	// 		clearInterval(t);
+	// 		fgi=0;
+	// 	}		
+	// }
+
+	
+	//setTimeout定时器 鼠标双击滚动条滑动停止案例 onclick 单击事件
+	// var gai=true;
+	// var t;
+	// window.onclick=function(){
+	// 	if(gai){
+	// 		t=setTimeout(fun,100);
+	// 		function fun(){
+	// 			scrollBy(0,20);
+	// 			gai=false;
+	// 			t=setTimeout(fun,100);	
+	// 		}
+	// 	}else{
+	// 		clearTimeout(t);
+	// 		gai=true;
+	// 	}
+	// }
+	
+	//找相同字符的位置 indexOf()
+	// var zif="我先忙了昂宝宝我先忙了昂宝宝我先忙了昂宝宝我先忙了昂宝宝我先忙了昂宝宝我先忙了昂宝宝"; 
+	
+	// var num=0;
+	// var newzf="";
+	// while((num=zif.indexOf("宝宝",num))>0){
+	// 	num++;
+	// 	newzf+=num+",";
+	// }
+	// alert(newzf);
+	 
+	 //错误5秒倒计时提示
+	// window.onload=function(){
+	// 	var num=5;
+	// var spans=document.getElementsByTagName('span')[0];
+	// 	setInterval(function(){
+	// 		num--;
+	// 		spans.innerHTML=num;
+	// 		if(num==0){
+	// 			location.href="https://baidu.com";
+	// 		}
+	// 	},1000);
+	// }
+</script>
+
+
+<style type="text/css">
+	body{
+		margin: 0;
+		padding: 0;
+	}
+	/*div{width:50px;height:50px;left:500px;top:200px;background:red;position:absolute;}*/
+	
+	/*.one{
+		width:350px;height:200px;border: 1px solid #666;margin:0 auto;margin-top:100px;
+	}
+	.top{
+		width: 100%;height: 30px;background:blue; text-align:center; color: red; line-height: 30px;
+	}
+	.con{
+		width: 100%;height: 150px; text-align:center;padding-top:20px;
+	}
+	span{
+		color: red;font-weight: bold;
+	}*/
+</style>
+
+<body>
+	<!-- <span>A</span>
+	<span>B</span>
+	<span>C</span>
+	<span>D</span>
+	<span>E</span>
+	<span>F</span> -->
+
+	<!-- <div>
+	</div> -->
+
+	<!-- <a style="" href= "JavaScript:void(0) "   onclick= "ter()">点我开始</a>  -->
+<!-- 
+	<div class="one">
+		<div class="top">错误提示</div>
+		<div class="con">
+			登录错误</br></br>
+			<span>5</span>秒后</br></br>
+			自动跳转，如没跳转请点击<a href="https://baidu.com">返回</a>首页
+		</div>
+	</div>  -->
+</body>
+</html>
